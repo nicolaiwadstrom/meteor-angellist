@@ -1,0 +1,22 @@
+<template name="configureLoginServiceDialogForAngelList">
+  <p>
+    First, you'll need to register your app on AngelList. Follow these steps:
+  </p>
+  <ol>
+    <li>
+      Visit <a href="https://angel.co/api/oauth/clients/new" target="_blank">https://angel.co/api/oauth/clients/new</a>
+    </li>
+    <li>
+      Set Callback URL to: <span class="url">{{siteUrl}}_oauth/angellist</span>
+    </li>
+    <li>
+      Set Main URL: <span class="url">{{siteUrl}}</span>
+    </li>
+    <li>
+      Select "Register".
+    </li>
+    <li>
+      Check your e-mail for Key and Access Token.
+    </li>
+  </ol>
+</template>
