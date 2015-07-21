@@ -1,9 +1,9 @@
 Package.describe({
-  name: 'nicolaiwadstrom:meteor-angellist',
+  name: 'qimingfang:meteor-angellist',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: 'AngelList API for Meteor',
-  git: 'https://github.com/nicolaiwadstrom/meteor-angellist.git'
+  git: 'https://github.com/qimingfang/meteor-angellist'
 });
 
 Package.onUse(function(api) {
@@ -24,11 +24,3 @@ Package.onUse(function(api) {
   api.addFiles('angellist_server.js', 'server');
   api.addFiles('angellist_client.js', 'client');  
 });
-
-/*
-Package.onTest(function(api) {
-  api.use('tinytest');
-  api.use('nicolaiwadstrom:meteor-angellist');
-  api.addFiles('meteor-angellist-tests.js');
-});
-*/
