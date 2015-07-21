@@ -7,7 +7,7 @@ AngelList.timeout = 30000;
 		
 AngelList.remoteCall = function(url) {
 		
-	var result = Meteor.http.get( url, {timeout:Angellist.timeout});
+	var result = Meteor.http.get( url, {timeout:AngelList.timeout});
 	
 	if( result.statusCode==200 ) {
 		var respJson = JSON.parse(result.content);
