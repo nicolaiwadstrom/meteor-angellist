@@ -4,13 +4,12 @@ AngelList.whitelistedFields = [
 	"id", "name", "image", "bio", "angellist_url", "what_ive_built", "what_i_do", "email"
 ];
 
-
 OAuth.registerService('angellist', 2, null, function(query) {
-	
 	var response = getTokens(query);
 	var accessToken = response.accessToken;
 	var idToken = response.idToken;
 	var identity = AngelList.getUserProfile( accessToken, 'me' );
+	identity.id = String(id);
 	
 	var serviceData = {
 	 accessToken: accessToken,
@@ -31,17 +30,19 @@ OAuth.registerService('angellist', 2, null, function(query) {
 	 serviceData: serviceData,
 	 options: {profile: {name: identity.name}}
 	};
-	});
+});
 	
-	//returns an object containing:
-	//- accessToken
-	//- expiresIn: lifetime of token in seconds
-	//- refreshToken, if this is the first authorization request
-	var getTokens = function (query) {
+//returns an object containing:
+//- accessToken
+//- expiresIn: lifetime of token in seconds
+//- refreshToken, if this is the first authorization request
+var getTokens = function (query) {
 	var config = ServiceConfiguration.configurations.findOne({service: 'angellist'});
 	if (!config)
 	 throw new ServiceConfiguration.ConfigError();
 	
+	console.log(OAuth._redirectUri('angellist', config));
+
 	var response;
 	try {
 	 response = HTTP.post(
@@ -68,19 +69,6 @@ OAuth.registerService('angellist', 2, null, function(query) {
 	 };
 	}
 };
-
-/*
-var getIdentity = function (accessToken) {
-	try {
-	 return HTTP.get(
-	   "https://www.googleapis.com/oauth2/v1/userinfo",
-	   {params: {access_token: accessToken}}).data;
-	} catch (err) {
-	 throw _.extend(new Error("Failed to fetch identity from AngelList. " + err.message),
-	                {response: err.response});
-	}
-};
-*/
 
 AngelList.retrieveCredential = function(credentialToken, credentialSecret) {
 	return OAuth.retrieveCredential(credentialToken, credentialSecret);
