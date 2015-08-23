@@ -1,6 +1,6 @@
 Package.describe({
   name: 'nicolaiwadstrom:meteor-angellist',
-  version: '0.0.1',
+  version: '0.0.9',
   // Brief, one-line summary of the package.
   summary: 'AngelList API for Meteor',
   git: 'https://github.com/nicolaiwadstrom/meteor-angellist.git'
@@ -17,7 +17,7 @@ Package.onUse(function(api) {
   api.use('underscore', 'server');
   api.use('service-configuration', ['client', 'server'] );
 
-  api.export('AngelList');
+  api.export('AngelList', ['client', 'server'] );
 
   api.addFiles( ['angellist_configure.html', 'angellist_configure.js'], 'client');
   api.addFiles('angellist_api.js', ['client', 'server'] );    
